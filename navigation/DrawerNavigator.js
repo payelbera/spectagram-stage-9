@@ -18,14 +18,7 @@ export default class DrawerNavigator extends Component {
     }
 
     componentDidMount() {
-        let theme;
-        firebase
-            .database()
-            .ref("/users/" + firebase.auth().currentUser.uid)
-            .on("value", function (snapshot) {
-                theme = snapshot.val().current_theme;
-            });
-        this.setState({ light_theme: theme === "light" ? true : false });
+        
     }
 
     render() {
