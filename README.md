@@ -1,2 +1,2 @@
 # spectagram-stage-9
-project solution c89
+Boiler plate code for Spectagram stage 9
