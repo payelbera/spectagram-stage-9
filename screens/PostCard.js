@@ -18,8 +18,7 @@ export default class PostCard extends Component {
             light_theme: true,
             post_id: this.props.post.key,
             post_data: this.props.post.value,
-            is_liked: false,
-            likes: this.props.post.value.likes
+            // declare is_liked and likes state object var
         };
     }
 
@@ -39,23 +38,7 @@ export default class PostCard extends Component {
     }
 
     likeAction = () => {
-        if (this.state.is_liked) {
-            firebase
-                .database()
-                .ref("posts")
-                .child(this.state.post_id)
-                .child("likes")
-                .set(firebase.database.ServerValue.increment(-1));
-            this.setState({ likes: (this.state.likes -= 1), is_liked: false });
-        } else {
-            firebase
-                .database()
-                .ref("posts")
-                .child(this.state.post_id)
-                .child("likes")
-                .set(firebase.database.ServerValue.increment(1));
-            this.setState({ likes: (this.state.likes += 1), is_liked: true });
-        }
+        // implement the likeAction() similar to story telling app
     };
 
     render() {
@@ -90,14 +73,7 @@ export default class PostCard extends Component {
                         </Text>
                     </View>
                     <View style={styles.actionContainer}>
-                        <TouchableOpacity
-                            style={
-                                this.state.is_liked
-                                    ? styles.likeButtonLiked
-                                    : styles.likeButtonDisliked
-                            }
-                            onPress={() => this.likeAction()}
-                        >
+                        // surround the Ionicon inside a touchableopacity
                             <Ionicons
                                 name={"heart"}
                                 size={RFValue(30)}
@@ -113,7 +89,7 @@ export default class PostCard extends Component {
                             >
                                 {this.state.likes}
                             </Text>
-                        </TouchableOpacity>
+                       
                     </View>
                 </View>
             </TouchableOpacity>
